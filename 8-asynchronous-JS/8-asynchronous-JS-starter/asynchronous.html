@@ -60,7 +60,7 @@
 
       // getRecipe();
 
-      // Using ES6 promises to deal with asynchronous js
+      // Using ES6 to produce promises that deal with asynchronous js
       const getIDs = new Promise((resolve, reject) => {
         // executor function
         setTimeout(() => {
@@ -96,24 +96,46 @@
         });
       };
 
-      getIDs
-      .then(IDs => {
-        // handle the successfully fullfilled promise
+      // PRODUCE PROMISES
+      // getIDs
+      // .then(IDs => {
+      //   // handle the successfully fullfilled promise
+      //   console.log(IDs);
+      //   return getARecipe(IDs[2]);  // returns a promise
+      // }).
+      // then(recipe => {
+      //   console.log(recipe);
+      //   return getRelated("Jonas");
+      // }).
+      // then(recipe => {
+      //   console.log(recipe);
+      // })
+      // .catch(error => {
+      //   // handle the failed promise
+      //   // test this by commenting the resolve response in the executor func
+      //   console.log(error);
+      // });
+
+      // CONSUME PROMISES
+      // ES8 async / await example
+      // await function can only be used inside an async function
+      // async function runs in the background
+      // await function halts the async function until the promise returns
+      async function getRecipesAW() {
+        const IDs = await getIDs;
         console.log(IDs);
-        return getARecipe(IDs[2]);  // returns a promise
-      }).
-      then(recipe => {
+
+        const recipe = await getARecipe(IDs[2]);
         console.log(recipe);
-        return getRelated("Jonas");
-      }).
-      then(recipe => {
-        console.log(recipe);
-      })
-      .catch(error => {
-        // handle the failed promise
-        // test this by commenting the resolve response in the executor func
-        console.log(error);
-      });
+
+        const related = await getRelated("Jonas");
+        console.log(related);
+
+        return recipe;
+      }
+
+      getRecipesAW().then(result => console.log(`${result} is the best!`));
+
     </script>
   </body>
 </html>
