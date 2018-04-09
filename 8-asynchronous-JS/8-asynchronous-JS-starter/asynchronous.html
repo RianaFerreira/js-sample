@@ -26,7 +26,39 @@
         console.log("The end")
       }
 
-      first();
+      // first();
+
+      // AJAX example
+      // Callback hell example avoid by using promises
+      function getRecipe() {
+        // simulate response from server
+        setTimeout(() => {
+          const recipeID = [543, 445, 532, 534, 534];
+          console.log(recipeID);
+
+          // retrieve recipe for on of the returned IDs
+          setTimeout((id) => {
+            const recipe = {
+              title: "Fresh tomato pasta",
+              publisher: "Jonas"
+            };
+            console.log(`${id}: ${recipe.title}`);
+
+            setTimeout(publisher => {
+              const recipe = {
+                title: "Margarita pizza",
+                publisher: publisher
+              };
+              console.log(recipe);
+            }, 1500, recipe.publisher);
+
+          }, 1500, recipeID[2]);
+
+        }, 1500);
+
+      }
+
+      getRecipe();
     </script>
   </body>
 </html>
