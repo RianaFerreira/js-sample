@@ -133,8 +133,36 @@
 
         return recipe;
       }
+      // getRecipesAW().then(result => console.log(`${result} is the best!`));
 
-      getRecipesAW().then(result => console.log(`${result} is the best!`));
+      // Ajax request using the fetch function
+      function getWeather(woeid) {
+        const corsProxy = "https://crossorigin.me/";
+        const url = "https://www.metaweather.com/api/";
+        const endpoint = `location/${woeid}`;
+
+        // get data and returns a promise or an error
+        fetch(`${corsProxy}${url}${endpoint}`)
+        .then(result => {
+          // callback function - returns a promise
+          console.log(result);
+          // convert JSON body to a string
+          return result.json();
+        })
+        .then(data => {
+          // callback function
+          console.log(data);
+          const today = data.consolidated_weather[0];
+          console.log(`Temperatures in ${data.title} between ${today.min_temp} and ${today.max_temp}`);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+      }
+
+      getWeather(2487956);
+      getWeather(44418);
+      getWeather(23456);
 
     </script>
   </body>
