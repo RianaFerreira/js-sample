@@ -153,7 +153,7 @@
           // callback function
           console.log(data);
           const today = data.consolidated_weather[0];
-          console.log(`Temperatures in ${data.title} between ${today.min_temp} and ${today.max_temp}`);
+          console.log(`Temperatures today in ${data.title} between ${today.min_temp} and ${today.max_temp}`);
         })
         .catch(error => {
           console.log(error);
@@ -164,15 +164,28 @@
       // getWeather(44418);
 
       async function getWeatherAW(woeid) {
-        const corsProxy = "https://crossorigin.me/";
-        const url = "https://www.metaweather.com/api/";
-        const endpoint = `location/${woeid}`;
+        // async function always returns a promise
+        try {
+          const corsProxy = "https://crossorigin.me/";
+          const url = "https://www.metaweather.com/api/";
+          const endpoint = `location/${woeid}`;
 
-        const result = await fetch(`${corsProxy}${url}${endpoint}`);
-        const data = await result.json();
-        console.log(data);
+          const result = await fetch(`${corsProxy}${url}${endpoint}`);
+          const data = await result.json();
+          const tomorrow = data.consolidated_weather[1];
+
+          console.log(`Temperature tomorrow in ${data.title} between ${tomorrow.min_temp} and ${tomorrow.max_temp}`);
+          return data;
+
+          // console.log(`Error example ${today.min_temp}`);
+        } catch(error) {
+          console.log(error);
+        }
       }
-      getWeatherAW(44418);
+      getWeatherAW(44418).then(data => {
+        let dataLondon = data;
+        console.log(dataLondon);
+      });
 
     </script>
   </body>
