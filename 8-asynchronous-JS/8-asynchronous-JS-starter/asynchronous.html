@@ -160,9 +160,19 @@
         });
       }
 
-      getWeather(2487956);
-      getWeather(44418);
-      getWeather(23456);
+      // getWeather(2487956);
+      // getWeather(44418);
+
+      async function getWeatherAW(woeid) {
+        const corsProxy = "https://crossorigin.me/";
+        const url = "https://www.metaweather.com/api/";
+        const endpoint = `location/${woeid}`;
+
+        const result = await fetch(`${corsProxy}${url}${endpoint}`);
+        const data = await result.json();
+        console.log(data);
+      }
+      getWeatherAW(44418);
 
     </script>
   </body>
