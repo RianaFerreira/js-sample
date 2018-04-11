@@ -2,5 +2,5 @@
 
 // import required modules
 import xModule from "./test";
-
-console.log(`I imported ${xModule} from another module!`);
+const x = 23;
+console.log(`I imported ${xModule} from another module! Polyfill test for const ${x}`);
