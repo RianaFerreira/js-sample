@@ -14,8 +14,13 @@
 ### Data models
 * ES6 classes
 
-
-### Application state
+### State management
 * Store controllers in **index.js**
 * Manage application state in a central location, similar to Redux state management.
 * Event listener for form submission.
+* Asynchronous search behaviour from controller.
+
+### Display of search results
+* Advance DOM manipulation.
+* ES6 template strings for HTML component rendering.
+* Display a loading spinner.
