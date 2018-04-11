@@ -34,4 +34,60 @@ export default class Recipe {
   calcServings() {
     this.servings = 4;
   }
+
+  parseIngredients() {
+    const unitsLong = ["tablespoons","tablespoon","teaspoons", "teaspoon","ounces","ounce","cups","pounds"];
+    const unitsShort = ["tbsp","tbsp","tsp","tsp","oz","oz","cup","pound"];
+
+    const newIngredients = this.ingredients.map(el => {
+      // standardise all measurement units
+      let ingredient = el.toLowerCase();
+
+      unitsLong.forEach((unit, index) => {
+        ingredient = ingredient.replace(unit, unitsShort[index]);
+      });
+
+      // Remove parenthesis
+      ingredient = ingredient.replace(/ *\([^)]*\) */g, " ");
+
+      // Parse ingredient into count, unit and ingredient name
+      const arrIng = ingredient.split(" ");
+      const unitIndex = arrIng.findIndex(el2 => unitsShort.includes(el2));
+      let objIng;
+
+      if (unitIndex > -1) {
+        // There is a unit e.g. 4 1/2 cups => eval("4+1/2") => 4.5 or 1 cup
+        const arrCount = arrIng.slice(0, unitIndex);
+        let count;
+
+        if (arrCount.length === 1) {
+          count = eval(arrIng[0].replace("-", "+"));
+        } else {
+          count = eval(arrIng.slice(0, unitIndex).join("+"));
+        }
+
+        objIng = {
+          count,
+          unit: arrIng[unitIndex],
+          ingredient: arrIng.slice(unitIndex + 1).join(" ")
+        };
+      } else if (parseInt(arrIng[0], 10)) {
+        // There is no unit but first element is a number
+        objIng = {
+          count: parseInt(arrIng[0], 10),
+          unit: "",
+          ingredient: arrIng.slice(1).join(" ")
+        };
+      } else if (unitIndex === -1) {
+        // There is no unit
+        objIng = {
+          count: 1,
+          unit: "",
+          ingredient
+        };
+      }
+      return objIng;
+    });
+    this.ingredients = newIngredients;
+  }
 }

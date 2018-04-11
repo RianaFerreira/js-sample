@@ -12,7 +12,7 @@
 * axios library for external api requests instead of the jquery fetch function
 
 ### Data models
-* ES6 classes
+* ES6 classes for every data model.
 
 ### State management
 * Store controllers in **index.js**
@@ -34,3 +34,5 @@
 * Read data from page URL.
 * Respond to hash change event.
 * Add same event listener to multiple events.
+* Array methods: `map`, `slice`, `findIndex`, and `includes`
+* `eval()` function usage.
