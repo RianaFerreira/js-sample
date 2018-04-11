@@ -29,3 +29,8 @@
 * `.closest` method for event handling
 * `data-*` attributes in HTML5
 * event delegation
+
+### Display a selected recipe
+* Read data from page URL.
+* Respond to hash change event.
+* Add same event listener to multiple events.
