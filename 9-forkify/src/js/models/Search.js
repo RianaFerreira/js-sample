@@ -15,7 +15,6 @@ export default class Search {
     try {
       const res = await axios(`${corsProxy}${apiURL}?key=${apiKey}&q=${this.query}`);
       this.result = res.data.recipes;
-      console.log(this.result);
     } catch(error) {
       alert(error);
     }

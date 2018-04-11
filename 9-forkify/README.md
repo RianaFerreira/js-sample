@@ -13,3 +13,9 @@
 
 ### Data models
 * ES6 classes
+
+
+### Application state
+* Store controllers in **index.js**
+* Manage application state in a central location, similar to Redux state management.
+* Event listener for form submission.
