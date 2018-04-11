@@ -24,4 +24,8 @@
 * Advance DOM manipulation.
 * ES6 template strings for HTML component rendering.
 * Display a loading spinner.
-* Paginate results.
+
+### Paginate search results
+* `.closest` method for event handling
+* `data-*` attributes in HTML5
+* event delegation

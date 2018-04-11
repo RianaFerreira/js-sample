@@ -12,7 +12,7 @@
 
 import Search from "./models/Search";                   // single module import
 import * as searchView from "./views/searchView";       // multiple module import
-import { elements, renderLoader, clearLoader } from "./views/base";
+import { elements, renderLoader, clearLoader, renderButtons } from "./views/base";
 
 /* Global state of the app
  * - Search object
@@ -39,6 +39,7 @@ const controlSearch = async () => {
     await state.search.getResults();
 
     // render results in UI
+    console.log(state.search.result);
     clearLoader();
     searchView.renderResults(state.search.result);
   }
@@ -48,4 +49,15 @@ elements.searchForm.addEventListener("submit", e => {
   // callback function
   e.preventDefault();
   controlSearch();
-})
+});
+
+elements.searchResultPages.addEventListener("click", e => {
+  // callback function
+  const btn = e.target.closest(".btn-inline");
+
+  if (btn) {
+    const goToPage = parseInt(btn.dataset.goto, 10);
+    searchView.clearResults();
+    searchView.renderResults(state.search.result, goToPage);
+  }
+});
