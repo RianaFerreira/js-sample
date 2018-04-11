@@ -10,3 +10,6 @@
 * 3rd party API http://food2fork.com/about/api
 * API key usage example
 * axios library for external api requests instead of the jquery fetch function
+
+### Data models
+* ES6 classes
