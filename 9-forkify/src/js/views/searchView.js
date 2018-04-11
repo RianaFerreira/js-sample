@@ -1,0 +1,4 @@
+// Export multiple objects from the module
+export const add = (a, b) => a + b;
+export const multiply = (a, b) => a * b;
+export const ID = 23;
