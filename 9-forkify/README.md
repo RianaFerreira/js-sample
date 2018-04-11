@@ -24,3 +24,4 @@
 * Advance DOM manipulation.
 * ES6 template strings for HTML component rendering.
 * Display a loading spinner.
+* Paginate results.

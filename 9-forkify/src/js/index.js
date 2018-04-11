@@ -10,9 +10,9 @@
 // console.log(`Using imported functions! ${a(ID, 2)} and ${m(3, 5)}. ${str}`);
 // console.log(`Using imported functions! ${searchView.add(searchView.ID, 2)} and ${searchView.multiply(3, 5)}.`);
 
-import Search from "./models/Search";                // single module import
-import * as searchView from "./views/searchView";    // multiple module import
-import { elements } from "./views/base";
+import Search from "./models/Search";                   // single module import
+import * as searchView from "./views/searchView";       // multiple module import
+import { elements, renderLoader, clearLoader } from "./views/base";
 
 /* Global state of the app
  * - Search object
@@ -33,11 +33,13 @@ const controlSearch = async () => {
     // prepare UI for display of results
     searchView.clearInput();
     searchView.clearResults();
+    renderLoader(elements.searchResults);
 
     // search for recipes
     await state.search.getResults();
 
     // render results in UI
+    clearLoader();
     searchView.renderResults(state.search.result);
   }
 }
