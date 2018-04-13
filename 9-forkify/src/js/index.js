@@ -16,6 +16,7 @@ import Recipe from "./models/Recipe";
 
 // VIEWS
 import * as searchView from "./views/searchView";       // multiple module import
+import * as recipeView from "./views/recipeView";
 
 // HELPERS
 import { elements, renderLoader, clearLoader, renderButtons } from "./views/base";
@@ -27,7 +28,6 @@ import { elements, renderLoader, clearLoader, renderButtons } from "./views/base
  * - Liked recipes
  */
 const state = {};
-
 
 // SEARCH CONTROLLER
 const controlSearch = async () => {
@@ -84,6 +84,8 @@ const controlRecipe = async () => {
 
   if (id) {
     //  Prepare UI to display the clicked recipe
+    recipeView.clearRecipe();
+    renderLoader(elements.recipe);
 
     // Create new recipe object
     state.recipe = new Recipe(id);
@@ -98,8 +100,10 @@ const controlRecipe = async () => {
       state.recipe.calcServings();
 
       // Render recipe
-      console.log(state.recipe);
+      clearLoader();
+      recipeView.renderRecipe(state.recipe);
     } catch(error) {
+      clearLoader();
       alert(error);
     }
   }
