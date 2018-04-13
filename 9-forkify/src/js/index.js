@@ -65,7 +65,8 @@ elements.searchForm.addEventListener("submit", e => {
 });
 
 elements.searchResultPages.addEventListener("click", e => {
-  // callback function
+  // callback function with delegation
+  // the pagination links may not exist on the page when it is loaded
   const btn = e.target.closest(".btn-inline");
 
   if (btn) {
@@ -110,7 +111,6 @@ const controlRecipe = async () => {
       alert(error);
     }
   }
-  console.log(id);
 };
 
 // Add the same event listener to multiple events
@@ -118,3 +118,19 @@ const controlRecipe = async () => {
 // DRY up this code:
 // window.addEventListener("hashchange", controlRecipe);
 // window.addEventListener("load", controlRecipe);
+
+// EVENT DELEGATION
+// + and - buttons aren't displayed yet when the page loads
+elements.recipe.addEventListener("click", e => {
+  if (event.target.matches(".btn-decrease, .btn-decrease *")) {
+    // decrease servings clicked
+    if (state.recipe.servings > 1) {
+      state.recipe.updateServings("dec");
+      recipeView.updateServingIngredients(state.recipe);
+    }
+  } else if (event.target.matches(".btn-increase, .btn-increase *")) {
+    // increase servings clicked
+    state.recipe.updateServings("inc");
+    recipeView.updateServingIngredients(state.recipe);
+  }
+});
