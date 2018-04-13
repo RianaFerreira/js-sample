@@ -38,7 +38,7 @@ export default class Recipe {
   parseIngredients() {
     const unitsLong = ["tablespoons","tablespoon","teaspoons", "teaspoon","ounces","ounce","cups","pounds"];
     const unitsShort = ["tbsp","tbsp","tsp","tsp","oz","oz","cup","pound"];
-    const units = [...unitsShort, "kg","g"];
+    const units = [...unitsShort, "kg","g","ml"];
 
     const newIngredients = this.ingredients.map(el => {
       // standardise all measurement units

@@ -89,6 +89,14 @@ export const clearResults = () => {
   elements.searchResultList.innerHTML = "";
   elements.searchResultPages.innerHTML = "";
 };
+export const highlightSelected = id => {
+  const resultsArr = Array.from(document.querySelectorAll(".results__link"));
+  resultsArr.forEach(el => {
+    el.classList.remove("results__link--active");
+  });
+  document.querySelector(`a[href="#${id}"]`).classList.add("results__link--active");
+};
+
 export const renderResults = (recipes, page = 1, resultsPerPage = 10) => {
   const start = (page - 1) * resultsPerPage;
   const end = page * resultsPerPage;

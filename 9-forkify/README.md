@@ -10,6 +10,7 @@
 * 3rd party API http://food2fork.com/about/api
 * API key usage example
 * axios library for external api requests instead of the jquery fetch function
+* CORS Proxy https://crossorigin.me/ or https://cors-anywhere.herokuapp.com/
 
 ### Data models
 * ES6 classes for every data model.
@@ -36,3 +37,12 @@
 * Add same event listener to multiple events.
 * Array methods: `map`, `slice`, `findIndex`, and `includes`
 * `eval()` function usage.
+
+### Event delegation
+* `.matches` function
+
+### External library dependencies
+* Improve display of recipe ingredient units https://github.com/infusion/Fraction.js/
+```
+$ npm install fractional --save
+```
