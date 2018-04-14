@@ -40,9 +40,15 @@
 
 ### Event delegation
 * `.matches` function
+* Array.slice vs Array.spice
+* Array.findIndex and Array.find examples
 
 ### External library dependencies
 * Improve display of recipe ingredient units https://github.com/infusion/Fraction.js/
 ```
 $ npm install fractional --save
+```
+* Unique ids for recipes https://github.com/adamhalasz/uniqid
+```
+$ npm install uniqid --save
 ```

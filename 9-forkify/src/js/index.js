@@ -13,6 +13,7 @@
 // MODELS
 import Search from "./models/Search";                   // single module import
 import Recipe from "./models/Recipe";
+import List from "./models/List";
 
 // VIEWS
 import * as searchView from "./views/searchView";       // multiple module import
@@ -134,3 +135,10 @@ elements.recipe.addEventListener("click", e => {
     recipeView.updateServingIngredients(state.recipe);
   }
 });
+
+// test new List model in browser console
+// $l --> new list object
+// $l.addItem(2, 'tbsp', 'salt');
+// $l.updateCount('jf9j7kld', 10);
+// $l.deleteItem('jf9j7kld');
+window.l = new List();
