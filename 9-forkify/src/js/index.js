@@ -18,6 +18,7 @@ import List from "./models/List";
 // VIEWS
 import * as searchView from "./views/searchView";       // multiple module import
 import * as recipeView from "./views/recipeView";
+import * as listView from "./views/listView";
 
 // HELPERS
 import { elements, renderLoader, clearLoader, renderButtons } from "./views/base";
@@ -120,6 +121,17 @@ const controlRecipe = async () => {
 // window.addEventListener("hashchange", controlRecipe);
 // window.addEventListener("load", controlRecipe);
 
+const controlList = () => {
+  // Create a new list if there aren't any yet
+  if (!state.list) state.list = new List();
+
+  // Add each recipe ingredient to the list and UI
+  state.recipe.ingredients.forEach(el => {
+    const item = state.list.addItem(el.count, el.unit, el.ingredient);
+    listView.renderItem(item);
+  });
+};
+
 // EVENT DELEGATION
 // + and - buttons aren't displayed yet when the page loads
 elements.recipe.addEventListener("click", e => {
@@ -133,12 +145,14 @@ elements.recipe.addEventListener("click", e => {
     // increase servings clicked
     state.recipe.updateServings("inc");
     recipeView.updateServingIngredients(state.recipe);
+  } else if (event.target.matches(".recipe__btn--add, .recipe__btn--add *")) {
+    controlList();
   }
 });
 
 // test new List model in browser console
+window.l = new List();
 // $l --> new list object
 // $l.addItem(2, 'tbsp', 'salt');
 // $l.updateCount('jf9j7kld', 10);
 // $l.deleteItem('jf9j7kld');
-window.l = new List();
