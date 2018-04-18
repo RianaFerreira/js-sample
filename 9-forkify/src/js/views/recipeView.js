@@ -6,14 +6,15 @@ const formatCount = count => {
   if (count) {
     // count = 2.5 --> 5/2 --> 2 1/2
     // count - 0.5 --> 1/2
-    const [int, dec] = count.toString().split(".").map(el => parseInt(el, 10));  // destructuring
+    const newCount = Math.round(count * 10000) / 1000;
+    const [int, dec] = newCount.toString().split(".").map(el => parseInt(el, 10));  // destructuring
 
-    if (!dec) return count;
+    if (!dec) return newCount;
     if (int === 0) {
-      const fractionalUnit = new Fraction(count);
+      const fractionalUnit = new Fraction(newCount);
       return `${fractionalUnit.numerator}/${fractionalUnit.denominator}`;
     } else {
-      const fractionalUnit = new Fraction(count - int);
+      const fractionalUnit = new Fraction(newCount - int);
       return `${int} ${fractionalUnit.numerator}/${fractionalUnit.denominator}`
     }
   }

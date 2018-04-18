@@ -1,5 +1,15 @@
 ## MVC architecture
 
+Run the development server while building the project
+```
+$ npm run start
+```
+
+Build the development code for deployment to Production
+```
+$ npm run build
+```
+
 ### Model and View setup
 * Using ES6 modules.
 * Default and named exports and imports.
@@ -54,6 +64,14 @@
 > localStorage.length
 > localStorage.removeItem("key")
 ```
+
+### TODO
+* Implement button to delete all shopping list items.
+* Implement functionality to manually add items to the shopping list.
+* Save shopping list data in localStorage.
+* Improve ingredient parsing algorithm.
+* Come up with an algorithm for calculating amount of servings.
+* Improve error handling.
 
 ### External library dependencies
 * Improve display of recipe ingredient units https://github.com/infusion/Fraction.js/

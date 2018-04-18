@@ -229,8 +229,9 @@ elements.recipe.addEventListener("click", e => {
 });
 
 // test state and new List model in browser console
-window.state = state;
-window.l = new List();
+// window is the global object, don't leave state here
+// window.state = state;
+// window.l = new List();
 // $l --> new list object
 // $l.addItem(2, 'tbsp', 'salt');
 // $l.updateCount('jf9j7kld', 10);
