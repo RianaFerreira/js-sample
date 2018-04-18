@@ -43,6 +43,18 @@
 * Array.slice vs Array.spice
 * Array.findIndex and Array.find examples
 
+### Local storage of data
+* localStorage API
+* Set, get and delete local storage items.
+* Browser console testing. localStorage data persists throughout page loads.
+```
+> localStorage.setItem("key", "value")
+> localStorage.getItem("key")
+> localStorage
+> localStorage.length
+> localStorage.removeItem("key")
+```
+
 ### External library dependencies
 * Improve display of recipe ingredient units https://github.com/infusion/Fraction.js/
 ```

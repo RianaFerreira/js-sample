@@ -20,6 +20,7 @@ import Likes from "./models/Likes";
 import * as searchView from "./views/searchView";       // multiple module import
 import * as recipeView from "./views/recipeView";
 import * as listView from "./views/listView";
+import * as likeView from "./views/likeView";
 
 // HELPERS
 import { elements, renderLoader, clearLoader, renderButtons } from "./views/base";
@@ -108,7 +109,10 @@ const controlRecipe = async () => {
 
       // Render recipe
       clearLoader();
-      recipeView.renderRecipe(state.recipe);
+      recipeView.renderRecipe(
+        state.recipe,
+        state.likes.isLiked(id)
+      );
     } catch(error) {
       clearLoader();
       alert(error);
@@ -167,19 +171,40 @@ const controlLike = () => {
       state.recipe.author,
       state.recipe.image
     );
+
     // Toggle the like button
+    likeView.toggleLikeBtn(true);
 
     // Add like to the UI list
+    likeView.renderLike(newLike);
     console.log(state.likes);
   } else { // User has liked current recipe
     // Remove like from the state
     state.likes.deleteLike(currentID);
     // Toggle the like button
-
+    likeView.toggleLikeBtn(false);
     // Remove like from UI list
+    likeView.deleteLike(currentID);
     console.log(state.likes);
   }
+
+  likeView.toggleLikeMenu(state.likes.getNumLikes());
 };
+
+// RESTORE LIKE RECIPES ON PAGE LOAD
+window.addEventListener("load", () => {
+  // Add new state item
+  state.likes = new Likes();
+
+  // Restore the likes
+  state.likes.readStorage();
+
+  // Toggle the like menu button
+  likeView.toggleLikeMenu(state.likes.getNumLikes());
+
+  // Render the eixsting liked recipe list
+  state.likes.likes.forEach(like => likeView.renderLike(like));
+});
 
 // EVENT DELEGATION
 // + and - buttons aren't displayed yet when the page loads
